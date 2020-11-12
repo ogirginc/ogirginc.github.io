@@ -17,16 +17,17 @@ On local machines, it is a collection of databases that are managed by a single 
 
 First, we will install the Postgresql Common [formulae](https://github.com/petere/homebrew-postgresql):
 
-{% highlight shell %}
+```shell
 brew install petere/postgresql/postgresql-common
-{% endhighlight %}
+```
 
 With these formulae installed, we can have multiple versions of PostgreSQL in parallel. We should be able to install any version of Postgresql starting with version 8.3. If you do want to check the available versions, use the Homebrew's `search`:
 
+```
 brew search petere/postgresql
+```
 
-Or you check the Github repo too see the availble version on your browser: https://github.com/petere/homebrew-postgresql
-If I wanted to install the version 12, this is how I would do it:
+Or you check the Github repo too see the availble version on your browser: [https://github.com/petere/homebrew-postgresql](https://github.com/petere/homebrew-postgresql). If I wanted to install the version 12, this is how I would do it:
 
 ```
 brew install petere/postgresql/postgresql@12
@@ -40,7 +41,8 @@ To create a cluster, we will be using the `pg_createcluster` wrapper scripts. Th
 Now, lets create our first cluster. We will name this one as the `main` but you can choose whatever name you like.
 
 ```shell
-pg_createcluster 12 main```
+pg_createcluster 12 main
+```
 
 We have created a new cluster named `main` which is version 12.4. If you like,  we can check the status of the cluster with the `pg_lsclusters` wrapper script.
 
