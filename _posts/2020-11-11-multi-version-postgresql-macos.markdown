@@ -6,14 +6,16 @@ permalink: /en/multi-version-postgresql-macos
 categories: postgresql macos
 ---
 
+> This article is also available on [Roam Research](https://roamresearch.com/#/app/ogirginc/page/SIrAHA4xq).
+
 So, you have decided to have multiple Postgresql versions on your Mac. Lucky for you, I have tried all options I was able to find and decided [Peter Eisentraut](https://github.com/petere)'s [Postgresql Common package](https://github.com/petere/postgresql-common), which is a Postgresql database cluster manager for Postgresql.
 
-# What is a database cluster?
+<h2>What is a database cluster?</h2>
 
 A database cluster is a bit of an ambiguous term. Its definition varies depending on the context. In this article, I am not going to explain what it means in production.
 On local machines, it is a collection of databases that are managed by a single database server. Clusters allow us to install multiple versions of Postgresql on our macOS. To manage these clusters, we will be using a package called Postgresql Common.
 
-# Postgresql Common with Homebrew
+<h2>Postgresql Common with Homebrew</h2>
 
 First, we will install the Postgresql Common [formulae](https://github.com/petere/homebrew-postgresql):
 
@@ -35,7 +37,7 @@ brew install petere/postgresql/postgresql@12
 
 This command will fetch the latest minor version of the provided major version. For example, if there are 4 minor versions available, we would have version 12.4 installed automatically. Depending on your internet speed, it should not take more than a couple of minutes to download. Same goes for installing it with the `make` command, which depends on how fast the computer is.
 
-# Creating a cluster for the first time
+<h2>Creating a cluster for the first time</h2>
 
 To create a cluster, we will be using the `pg_createcluster` wrapper scripts. These scripts are just a wrappers around `pg_ctl` and `initdb` to make managing easier.
 Now, lets create our first cluster. We will name this one as the `main` but you can choose whatever name you like.
@@ -87,15 +89,15 @@ After starting your cluster, rest is the same with the any Postgresql installati
 
 That's it! Now just repeat the process for each version you want to install and it should work with a problem. If you do encounter any problems, check the Troubleshooting section below. If the problem still continues, feel free to open an issue and I would try my best to help!
 
-# Troubleshooting
+<h2>Troubleshooting</h2>
 
-## Authentication failed for user
+<h3>Authentication failed for user</h3>
 
-### Why?
+<h4>Why?</h4>
 
 The default Postgres configuration sets the client authentication method to `peer` or `md5`, which can prevent connection to the database.
 
-### Solution
+<h4>Solution</h4>
 
 Run `psql -c 'show hba_file;'` to get `pg_hba.conf`'s path. The output should look like this:
 
@@ -127,9 +129,9 @@ host    replication     all             127.0.0.1/32            md5
 host    replication     all             ::1/128                 md5
 ```
 
-## No such file or directory
+<h3>No such file or directory</h3>
 
-### Why?
+<h4>Why?</h4>
 
 When creating a cluster, `pg_ctl` fails to find `conf.d` because it is missing. It's a known bug. Check [#45](https://github.com/petere/homebrew-postgresql/issues/45) and [#49](https://github.com/petere/homebrew-postgresql/issues/49) for additional details.
 
@@ -143,7 +145,7 @@ pg_ctl: could not start server
 Examine the log output.
 ```
 
-### Solution
+<h4>Solution</h4>
 
 Create the `conf.d` with the `mkdir` command.
 
@@ -151,9 +153,9 @@ Create the `conf.d` with the `mkdir` command.
 mkdir /usr/local/etc/postgresql/12/main/conf.d
 ```
 
-## Perl required
+<h3>Perl required</h3>
 
-### Why?
+<h4>Why?</h4>
 
 You get the error bellow because the required Perl files could not be found. Check [#44](https://github.com/petere/homebrew-postgresql/issues/44#issuecomment-570881749) for additional details.
 
@@ -161,7 +163,7 @@ You get the error bellow because the required Perl files could not be found. Che
 configure: error: header file <perl.h> is required for Perl
 ```
 
-### Solution
+<h4>Solution</h4>
 
 Try installing Xcode which should install all necessary Perl files and specify the Xcode that you wish to use for command line developer tools like this:
 
@@ -169,13 +171,13 @@ Try installing Xcode which should install all necessary Perl files and specify t
 sudo xcode-select --switch /Applications/Xcode.app/
 ```
 
-## LANG error
+<h3>LANG error</h3>
 
-### Why?
+<h4>Why?</h4>
 
 For some unknown reasons, operation system's locales are messed up.
 
-### Solution
+<h4>Solution</h4>
 
 First export the desired language and than create the cluster. An example for `en_US` would be like this:
 
@@ -186,13 +188,13 @@ pg_createcluster 12 main
 
 However, I would highly suggest fixing the locales as it might cause additional non-database related problems.
 
-## Different versions for `psql` and `server`
+<h3>Different versions for `psql` and `server`</h3>
 
-### Why?
+<h4>Why?</h4>
 
 You have installed multiple Postgresql versions with Homebrew and `psql` automaticly picks the latest version.
 
-### Solution
+<h4>Solution</h4>
 
 When trying to use `psql` with a ealir version of an Postgresql, a warning will be presented.
 
@@ -217,9 +219,9 @@ Type "help" for help.
 ogirginc=#
 ```
 
-## Create a database with a different port
+<h3>Create a database with a different port</h3>
 
-### Why?
+<h4>Why?</h4>
 
 When you create a new cluster, Postgresql assigns the next available port number to this new cluster, which results in not being able to connect to the default 5432 port.
 An example of an error, while trying to run `psql` for the newly created second cluster:
@@ -230,7 +232,7 @@ psql: error: could not connect to server: could not connect to server: No such f
 	connections on Unix domain socket "/tmp/.s.PGSQL.5432"?
 ```
 
-### Solution
+<h4>Solution</h4>
 
 To fix this connection error, we have to specificly tell `psql` which port it should use to connect to the database by exporting the `PGPORT` environment variable.
 Check with the `pg_lsclusters` wrapper script to which port do you need to connect the database.
@@ -255,12 +257,12 @@ Type "help" for help.
 ogirginc=#
 ```
 
-## You call this simple?
+<h3>You call this simple?</h3>
 
-### Why?
+<h4>Why?</h4>
 
 I am fully aware it is not simple nor easy, but it gets the job done.
 
-### Solution
+<h4>Solution</h4>
 
 Be the change and create a simpler way! Pretty please? :)
