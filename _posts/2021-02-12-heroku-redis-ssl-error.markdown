@@ -4,9 +4,6 @@ title:  "How to solve the SSL error for Redis 6 on Heroku?"
 permalink: /en/heroku-redis-ssl-error
 categories: redis heroku ssl
 ---
-
-> This article is also available on [Roam Research](https://roamresearch.com/#/app/ogirginc/page/6J78BW-ov).
-
 If you try to connect a Ruby on Rails app with a Heroku Redis add-on (excluding the Hobby Dev plan), there is a very high chance for you to get the error below:
 
 ```

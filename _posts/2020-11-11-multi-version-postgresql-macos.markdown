@@ -5,9 +5,6 @@ date:   2020-11-11 21:03:00 +0300
 permalink: /en/multi-version-postgresql-macos
 categories: postgresql macos
 ---
-
-> This article is also available on [Roam Research](https://roamresearch.com/#/app/ogirginc/page/SIrAHA4xq).
-
 So, you have decided to have multiple Postgresql versions on your Mac. Lucky for you, I have tried all options I was able to find and decided [Peter Eisentraut](https://github.com/petere)'s [Postgresql Common package](https://github.com/petere/postgresql-common), which is a Postgresql database cluster manager for Postgresql.
 
 <h2>What is a database cluster?</h2>
