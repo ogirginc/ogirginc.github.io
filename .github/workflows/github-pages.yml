@@ -19,3 +19,4 @@ jobs:
       - uses: helaili/jekyll-action@2.3.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          target_branch: 'gh-pages'
