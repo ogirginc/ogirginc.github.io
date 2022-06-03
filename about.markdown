@@ -10,9 +10,9 @@ permalink: /en/about/
 
 # Now
 
-Lead software developer at [Parasut.com][parasut]'s financial services platform.
+Full stack software developer at [Teamtailor.com][tt].
 
 [github]: https://github.com/ogirginc
 [twitter]: https://twitter.com/ogirginc
 [linkedin]: https://linkedin.com/in/ogulcangirginc
-[parasut]: https://parasut.com/
+[tt]: https://www.teamtailor.com/en
