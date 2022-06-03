@@ -30,6 +30,15 @@ twitter_username: ogirginc
 github_username: ogirginc
 linkedin_username: ogirginc
 
+jekyll_admin:
+  # hidden_links:
+  #   - posts
+  #   - pages
+  #   - staticfiles
+  #   - datafiles
+  #   - configuration
+  # homepage: "pages"
+
 # Build settings
 theme: minima
 plugins:

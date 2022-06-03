@@ -1,11 +1,14 @@
 ---
+title: How to install multiple Postgresql versions on macOS?
 layout: post
-title:  "How to install multiple Postgresql versions on macOS?"
-date:   2020-11-11 21:03:00 +0300
-permalink: /en/multi-version-postgresql-macos
-categories: postgresql macos
-updated: 2022-06-03
+date: '2020-11-11 21:03:00 +0300'
+updated: '2022-06-03'
+permalink: "/en/multi-version-postgresql-macos"
+categories:
+- postgresql
+- macos
 ---
+
 {% if page.updated %}
   {% assign updated_ago = page.updated | timeago %}
   <details>

@@ -1,10 +1,15 @@
 ---
+title: How to solve the SSL error for Redis 6 on Heroku?
 layout: post
-title:  "How to solve the SSL error for Redis 6 on Heroku?"
-permalink: /en/heroku-redis-ssl-error
-categories: redis heroku ssl
-updated: 2022-06-03
+date: '2021-02-12 00:20:02 +0300'
+updated: '2022-06-03'
+permalink: "/en/heroku-redis-ssl-error"
+categories:
+- redis
+- heroku
+- ssl
 ---
+
 {% if page.updated %}
   {% assign updated_ago = page.updated | timeago %}
   <details>
