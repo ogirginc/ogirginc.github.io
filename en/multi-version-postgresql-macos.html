@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>How to install multiple Postgresql versions on macOS? | ogirginc</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="How to install multiple Postgresql versions on macOS?" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Last updated at today. 1. Today – Add &quot;last updated&quot; section to articles." />
+<meta property="og:description" content="Last updated at today. 1. Today – Add &quot;last updated&quot; section to articles." />
+<link rel="canonical" href="/en/multi-version-postgresql-macos" />
+<meta property="og:url" content="/en/multi-version-postgresql-macos" />
+<meta property="og:site_name" content="ogirginc" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-11T18:03:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How to install multiple Postgresql versions on macOS?" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-11-11T18:03:00+00:00","datePublished":"2020-11-11T18:03:00+00:00","description":"Last updated at today. 1. Today – Add &quot;last updated&quot; section to articles.","headline":"How to install multiple Postgresql versions on macOS?","mainEntityOfPage":{"@type":"WebPage","@id":"/en/multi-version-postgresql-macos"},"url":"/en/multi-version-postgresql-macos"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="ogirginc" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ogirginc</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/en/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">How to install multiple Postgresql versions on macOS?</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-11-11T18:03:00+00:00" itemprop="datePublished">Nov 11, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    
+<details>
+      <summary>
+        <small><em>Last updated at today.</em></small>
+      </summary>
+      <small>1. <mark>Today</mark> – <em>Add "last updated" section to articles.</em></small>
+  </details>
+<p></p>
+
+<p>So, you have decided to have multiple Postgresql versions on your Mac. Lucky for you, I have tried all options I was able to find and decided <a href="https://github.com/petere">Peter Eisentraut</a>’s <a href="https://github.com/petere/postgresql-common">Postgresql Common package</a>, which is a Postgresql database cluster manager for Postgresql.</p>
+
+<h2>What is a database cluster?</h2>
+
+<p>A database cluster is a bit of an ambiguous term. Its definition varies depending on the context. In this article, I am not going to explain what it means in production.
+On local machines, it is a collection of databases that are managed by a single database server. Clusters allow us to install multiple versions of Postgresql on our macOS. To manage these clusters, we will be using a package called Postgresql Common.</p>
+
+<h2>Postgresql Common with Homebrew</h2>
+
+<p>First, we will install the Postgresql Common <a href="https://github.com/petere/homebrew-postgresql">formulae</a>:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>petere/postgresql/postgresql-common
+</code></pre></div></div>
+
+<p>With these formulae installed, we can have multiple versions of PostgreSQL in parallel. We should be able to install any version of Postgresql starting with version 8.3. If you do want to check the available versions, use the Homebrew’s <code class="language-plaintext highlighter-rouge">search</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew search petere/postgresql
+</code></pre></div></div>
+
+<p>Or you check the Github repo too see the availble version on your browser: <a href="https://github.com/petere/homebrew-postgresql">https://github.com/petere/homebrew-postgresql</a>. If I wanted to install the version 12, this is how I would do it:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew install petere/postgresql/postgresql@12
+</code></pre></div></div>
+
+<p>This command will fetch the latest minor version of the provided major version. For example, if there are 4 minor versions available, we would have version 12.4 installed automatically. Depending on your internet speed, it should not take more than a couple of minutes to download. Same goes for installing it with the <code class="language-plaintext highlighter-rouge">make</code> command, which depends on how fast the computer is.</p>
+
+<h2>Creating a cluster for the first time</h2>
+
+<p>To create a cluster, we will be using the <code class="language-plaintext highlighter-rouge">pg_createcluster</code> wrapper scripts. These scripts are just a wrappers around <code class="language-plaintext highlighter-rouge">pg_ctl</code> and <code class="language-plaintext highlighter-rouge">initdb</code> to make managing easier.
+Now, lets create our first cluster. We will name this one as the <code class="language-plaintext highlighter-rouge">main</code> but you can choose whatever name you like.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pg_createcluster 12 main
+</code></pre></div></div>
+
+<p>We have created a new cluster named <code class="language-plaintext highlighter-rouge">main</code> which is version 12.4. If you like,  we can check the status of the cluster with the <code class="language-plaintext highlighter-rouge">pg_lsclusters</code> wrapper script.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pg_lsclusters
+</code></pre></div></div>
+
+<p>This should list all the clusters, with some additional information, we have created in our machine.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Ver Cluster Port Status Owner    Data directory                        Log file
+12  main    5432 down   ogirginc /usr/local/var/lib/postgresql/12/main /usr/local/var/log/postgresql/postgresql-12-main.log
+</code></pre></div></div>
+
+<p>Lets start our newly created cluster, we will be using <code class="language-plaintext highlighter-rouge">pg_ctlcluster</code>.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pg_ctlcluster 12 main start
+</code></pre></div></div>
+
+<p>Just to be sure, check the <code class="language-plaintext highlighter-rouge">Status</code> with <code class="language-plaintext highlighter-rouge">pg_lsclusters</code>. You should see the the word <code class="language-plaintext highlighter-rouge">down</code> being replaced with <code class="language-plaintext highlighter-rouge">online</code>. Also, the output color change might change depending on your theme. In my case, it was red turned to green.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Ver Cluster Port Status Owner    Data directory                        Log file
+12  main    5432 online ogirginc /usr/local/var/lib/postgresql/12/main /usr/local/var/log/postgresql/postgresql-12-main.log
+</code></pre></div></div>
+
+<p>After starting your cluster, rest is the same with the any Postgresql installation. Create a database with <code class="language-plaintext highlighter-rouge">created</code> command and list those with <code class="language-plaintext highlighter-rouge">psql -c '\l'</code> command to check if all is good. You should something similar to this:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                                          List of databases
+   Name    |  Owner   | Encoding |   Collate   | Ctype |   Access privileges
+<span class="nt">-----------</span>+----------+----------+-------------+-------+-----------------------
+ ogirginc  | ogirginc | UTF8     | en_US.UTF-8 | UTF-8 |
+ postgres  | ogirginc | UTF8     | en_US.UTF-8 | UTF-8 |
+ template0 | ogirginc | UTF8     | en_US.UTF-8 | UTF-8 | <span class="o">=</span>c/ogirginc          +
+           |          |          |             |       | <span class="nv">ogirginc</span><span class="o">=</span>CTc/ogirginc
+ template1 | ogirginc | UTF8     | en_US.UTF-8 | UTF-8 | <span class="o">=</span>c/ogirginc          +
+           |          |          |             |       | <span class="nv">ogirginc</span><span class="o">=</span>CTc/ogirginc
+<span class="o">(</span>4 rows<span class="o">)</span>
+</code></pre></div></div>
+
+<p>That’s it! Now just repeat the process for each version you want to install and it should work with a problem. If you do encounter any problems, check the Troubleshooting section below. If the problem still continues, feel free to open an issue and I would try my best to help!</p>
+
+<h2>Troubleshooting</h2>
+
+<h3>Authentication failed for user</h3>
+
+<h4>Why?</h4>
+
+<p>The default Postgres configuration sets the client authentication method to <code class="language-plaintext highlighter-rouge">peer</code> or <code class="language-plaintext highlighter-rouge">md5</code>, which can prevent connection to the database.</p>
+
+<h4>Solution</h4>
+
+<p>Run <code class="language-plaintext highlighter-rouge">psql -c 'show hba_file;'</code> to get <code class="language-plaintext highlighter-rouge">pg_hba.conf</code>’s path. The output should look like this:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                   hba_file
+<span class="nt">-----------------------------------------------</span>
+ /usr/local/etc/postgresql/12/main/pg_hba.conf
+<span class="o">(</span>1 row<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Open the <code class="language-plaintext highlighter-rouge">pg_hba.conf</code> file with your editor and go to the end of it, where we can see the prefered authentication methods. If you don’t have any sensitive data and your local database is not accessible through the internet, I would suggest changing the <code class="language-plaintext highlighter-rouge">METHOD</code> to <code class="language-plaintext highlighter-rouge">trust</code> for eas of use. This is how I use it:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Database administrative login by Unix domain socket</span>
+<span class="nb">local   </span>all             ogirginc                                trust
+
+<span class="c"># TYPE  DATABASE        USER            ADDRESS                 METHOD</span>
+
+<span class="c"># "local" is for Unix domain socket connections only</span>
+<span class="nb">local   </span>all             all                                     trust
+<span class="c"># IPv4 local connections:</span>
+host    all             all             127.0.0.1/32            trust
+<span class="c"># IPv6 local connections:</span>
+host    all             all             ::1/128                 trust
+<span class="c"># Allow replication connections from localhost, by a user with the</span>
+<span class="c"># replication privilege.</span>
+<span class="nb">local   </span>replication     all                                     peer
+host    replication     all             127.0.0.1/32            md5
+host    replication     all             ::1/128                 md5
+</code></pre></div></div>
+
+<h3>No such file or directory</h3>
+
+<h4>Why?</h4>
+
+<p>When creating a cluster, <code class="language-plaintext highlighter-rouge">pg_ctl</code> fails to find <code class="language-plaintext highlighter-rouge">conf.d</code> because it is missing. It’s a known bug. Check <a href="https://github.com/petere/homebrew-postgresql/issues/45">#45</a> and <a href="https://github.com/petere/homebrew-postgresql/issues/49">#49</a> for additional details.</p>
+
+<p>Example output of <code class="language-plaintext highlighter-rouge">pg_ctlcluster 12 main start</code>:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: /usr/local/opt/postgresql@12/bin/pg_ctl /usr/local/opt/postgresql@12/bin/pg_ctl start <span class="nt">-D</span> /usr/local/var/lib/postgresql/12/main <span class="nt">-l</span> /usr/local/var/log/postgresql/postgresql-12-main.log <span class="nt">-s</span> <span class="nt">-o</span>  <span class="nt">-c</span> <span class="nv">config_file</span><span class="o">=</span><span class="s2">"/usr/local/etc/postgresql/12/main/postgresql.conf"</span> <span class="nt">-c</span> <span class="nv">external_pid_file</span><span class="o">=</span><span class="s2">"/usr/local/var/run/postgresql/12-main.pid"</span>  exited with status 1:
+2020-07-13 10:32:51.376 GMT <span class="o">[</span>9841] LOG:  could not open configuration directory <span class="s2">"/usr/local/etc/postgresql/12/main/conf.d"</span>: No such file or directory
+2020-07-13 10:32:51.376 GMT <span class="o">[</span>9841] FATAL:  configuration file <span class="s2">"/usr/local/etc/postgresql/12/main/postgresql.conf"</span> contains errors
+pg_ctl: could not start server
+Examine the log output.
+</code></pre></div></div>
+
+<h4>Solution</h4>
+
+<p>Create the <code class="language-plaintext highlighter-rouge">conf.d</code> with the <code class="language-plaintext highlighter-rouge">mkdir</code> command.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /usr/local/etc/postgresql/12/main/conf.d
+</code></pre></div></div>
+
+<h3>Perl required</h3>
+
+<h4>Why?</h4>
+
+<p>You get the error bellow because the required Perl files could not be found. Check <a href="https://github.com/petere/homebrew-postgresql/issues/44#issuecomment-570881749">#44</a> for additional details.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>configure: error: header file &lt;perl.h&gt; is required <span class="k">for </span>Perl
+</code></pre></div></div>
+
+<h4>Solution</h4>
+
+<p>Try installing Xcode which should install all necessary Perl files and specify the Xcode that you wish to use for command line developer tools like this:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>xcode-select <span class="nt">--switch</span> /Applications/Xcode.app/
+</code></pre></div></div>
+
+<h3>LANG error</h3>
+
+<h4>Why?</h4>
+
+<p>For some unknown reasons, operation system’s locales are messed up.</p>
+
+<h4>Solution</h4>
+
+<p>First export the desired language and than create the cluster. An example for <code class="language-plaintext highlighter-rouge">en_US</code> would be like this:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+pg_createcluster 12 main
+</code></pre></div></div>
+
+<p>However, I would highly suggest fixing the locales as it might cause additional non-database related problems.</p>
+
+<h3>Different versions for `psql` and `server`</h3>
+
+<h4>Why?</h4>
+
+<p>You have installed multiple Postgresql versions with Homebrew and <code class="language-plaintext highlighter-rouge">psql</code> automaticly picks the latest version.</p>
+
+<h4>Solution</h4>
+
+<p>When trying to use <code class="language-plaintext highlighter-rouge">psql</code> with a ealir version of an Postgresql, a warning will be presented.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql <span class="o">(</span>13.0 <span class="o">(</span>Homebrew petere/postgresql<span class="o">)</span>, server 12.4 <span class="o">(</span>Homebrew petere/postgresql<span class="o">))</span>
+</code></pre></div></div>
+
+<p>First of all, this is just a warning. Secondly, most, if not all things should work in <code class="language-plaintext highlighter-rouge">psql</code>.
+However, tools like <code class="language-plaintext highlighter-rouge">pg_dump</code> might fail. To fix when you get this warning, export the desired Postgresql vertion to the path.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/usr/local/opt/postgresql@12/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<p>When retrying, there should not be any warning about version mismatch.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ psql
+psql <span class="o">(</span>12.4 <span class="o">(</span>Homebrew petere/postgresql<span class="o">))</span>
+Type <span class="s2">"help"</span> <span class="k">for </span>help.
+
+<span class="nv">ogirginc</span><span class="o">=</span><span class="c">#</span>
+</code></pre></div></div>
+
+<h3>Create a database with a different port</h3>
+
+<h4>Why?</h4>
+
+<p>When you create a new cluster, Postgresql assigns the next available port number to this new cluster, which results in not being able to connect to the default 5432 port.
+An example of an error, while trying to run <code class="language-plaintext highlighter-rouge">psql</code> for the newly created second cluster:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql: error: could not connect to server: could not connect to server: No such file or directory
+	Is the server running locally and accepting
+	connections on Unix domain socket <span class="s2">"/tmp/.s.PGSQL.5432"</span>?
+</code></pre></div></div>
+
+<h4>Solution</h4>
+
+<p>To fix this connection error, we have to specificly tell <code class="language-plaintext highlighter-rouge">psql</code> which port it should use to connect to the database by exporting the <code class="language-plaintext highlighter-rouge">PGPORT</code> environment variable.
+Check with the <code class="language-plaintext highlighter-rouge">pg_lsclusters</code> wrapper script to which port do you need to connect the database.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Ver Cluster Port Status Owner    Data directory                        Log file
+12  main    5433 online ogirginc /usr/local/var/lib/postgresql/12/main /usr/local/var/log/postgresql/postgresql-12-main.log
+13  main    5432 down   ogirginc /usr/local/var/lib/postgresql/13/main /usr/local/var/log/postgresql/postgresql-13-main.log
+</code></pre></div></div>
+
+<p>To use version 12, I need to set <code class="language-plaintext highlighter-rouge">PGPORT</code> to <code class="language-plaintext highlighter-rouge">5433</code>:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PGPORT</span><span class="o">=</span>5433
+</code></pre></div></div>
+<p>With this explicit port setting, we can use <code class="language-plaintext highlighter-rouge">psql</code> or any other Postgresql utilities without any problems.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql <span class="o">(</span>12.4 <span class="o">(</span>Homebrew petere/postgresql<span class="o">))</span>
+Type <span class="s2">"help"</span> <span class="k">for </span>help.
+
+<span class="nv">ogirginc</span><span class="o">=</span><span class="c">#</span>
+</code></pre></div></div>
+
+<h3>You call this simple?</h3>
+
+<h4>Why?</h4>
+
+<p>I am fully aware it is not simple nor easy, but it gets the job done.</p>
+
+<h4>Solution</h4>
+
+<p>Be the change and create a simpler way! Pretty please? :)</p>
+
+  </div><a class="u-url" href="/en/multi-version-postgresql-macos" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1"><ul class="social-media-list"><li><a href="https://www.twitter.com/ogirginc"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">ogirginc</span></a></li><li><a href="https://github.com/ogirginc"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ogirginc</span></a></li><li><a href="https://www.linkedin.com/in/ogirginc"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">ogirginc</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-2">
+        <!--<ul class="social-media-list"><li><a href="https://www.twitter.com/ogirginc"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">ogirginc</span></a></li><li><a href="https://github.com/ogirginc"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ogirginc</span></a></li><li><a href="https://www.linkedin.com/in/ogirginc"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">ogirginc</span></a></li></ul>
+-->
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <!-- <p></p> -->
+        <ul class="contact-list"><li><a class="u-email" href="mailto:ogirginc@hey.com">ogirginc@hey.com</a></li></ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
