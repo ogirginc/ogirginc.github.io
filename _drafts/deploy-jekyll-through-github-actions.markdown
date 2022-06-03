@@ -20,4 +20,6 @@ categories:
   <p></p>
 {% endif %}
 
-WIP
+If you host a Jekyll site on Github Pages, you are probably aware of the restrictions; only gems allowed by Github can be used. [Here](https://pages.github.com/versions/) is the list, if you want to check.
+
+However, if you want far more control over the build and still want to host your Jekyll site on GitHub Pages, you can use GitHub Actions.
