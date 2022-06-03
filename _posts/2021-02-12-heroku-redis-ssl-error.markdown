@@ -3,7 +3,19 @@ layout: post
 title:  "How to solve the SSL error for Redis 6 on Heroku?"
 permalink: /en/heroku-redis-ssl-error
 categories: redis heroku ssl
+updated: 2022-06-03
 ---
+{% if page.updated %}
+  {% assign updated_ago = page.updated | timeago %}
+  <details>
+      <summary>
+        <small><em>Last updated at {{ updated_ago }}.</em></small>
+      </summary>
+      <small>1. <mark>{{ updated_ago | capitalize }}</mark> – <em>Add "last updated" section to articles.</em></small>
+  </details>
+  <p></p>
+{% endif %}
+
 If you try to connect a Ruby on Rails app with a Heroku Redis add-on (excluding the Hobby Dev plan), there is a very high chance for you to get the error below:
 
 ```

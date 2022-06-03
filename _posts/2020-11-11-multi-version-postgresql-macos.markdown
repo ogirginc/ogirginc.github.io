@@ -4,7 +4,19 @@ title:  "How to install multiple Postgresql versions on macOS?"
 date:   2020-11-11 21:03:00 +0300
 permalink: /en/multi-version-postgresql-macos
 categories: postgresql macos
+updated: 2022-06-03
 ---
+{% if page.updated %}
+  {% assign updated_ago = page.updated | timeago %}
+  <details>
+      <summary>
+        <small><em>Last updated at {{ updated_ago }}.</em></small>
+      </summary>
+      <small>1. <mark>{{ updated_ago | capitalize }}</mark> – <em>Add "last updated" section to articles.</em></small>
+  </details>
+  <p></p>
+{% endif %}
+
 So, you have decided to have multiple Postgresql versions on your Mac. Lucky for you, I have tried all options I was able to find and decided [Peter Eisentraut](https://github.com/petere)'s [Postgresql Common package](https://github.com/petere/postgresql-common), which is a Postgresql database cluster manager for Postgresql.
 
 <h2>What is a database cluster?</h2>
